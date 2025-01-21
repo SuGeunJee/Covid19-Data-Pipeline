@@ -4,25 +4,21 @@
 ## Table of Contents
 
 1. [**Project**](#1-project)  
-  1.1 [Project Background and Overview](#1-1-project-background-and-overview)  
-  1.2 [Team Members](#1-2-team-members)  
-  1.3 [Stack](#1-3-stack)  
-<br>
+  1.1 [**Project Background and Overview**](#1-1-project-background-and-overview)  
+  1.2 [**Team Members**](#1-2-team-members)  
+  1.3 [**Stack**](#1-3-stack)  
 
 2. [**Data Overview**](#2-data-overview)  
-  2.1 [Table - Covid19SidoInfState](#2-1-table-covid19sidoinfstate)  
-  2.2 [Data Set](#2-2-data-set)  
-  2.3 [Data Flow](#2-3-data-flow)  
-  2.4 [Data Source](#2-4-data-source)  
-<br>
+  2.1 [**Table - Covid19SidoInfState**](#2-1-table-covid19sidoinfstate)  
+  2.2 [**Data Set**](#2-2-data-set)  
+  2.3 [**Data Flow**](#2-3-data-flow)  
+  2.4 [**Data Source**](#2-4-data-source)  
 
 3. [**Data Visualization Using Kibana**](#3-data-visualization-using-kibana)  
-  3.1 [Data Valid](#3-1-data-valid)  
-  3.2 [Kibana Visualize](#3-2-kibana-visualize)  
-<br>
+  3.1 [**Data Valid**](#3-1-data-valid)  
+  3.2 [**Kibana Visualize**](#3-2-kibana-visualize)  
 
 4. [**Connection Process**](#4-connection-process)  
-<br>
 
 5. [**Review**](#5-review)
 
