@@ -297,8 +297,8 @@ output {
 
 
 # 5. TroubleShooting💥
-1. **Logstash add_field 문제 해결 트러블슈팅**
 <br>
+1. **Logstash add_field 문제 해결 트러블슈팅**
 
 ```
      add_field => { # seq,stdDay,gubun,gubunCn,gubunEn,deathCnt,incDec,isolClearCnt,qurRate,defCnt,isolIngCnt,overFlowCnt,localOccCnt,createDt,updateDt
