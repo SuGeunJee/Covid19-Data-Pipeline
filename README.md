@@ -15,11 +15,13 @@
   2.4 [Data Source](#24-data-flow)
   2.5 [Data Source](#25-data-source)
 
-4. [**Data Visualization Using Kibana**](#3-data-visualization-using-kibana️)  
+3. [**Data Visualization Using Kibana**](#3-data-visualization-using-kibana️)  
   3.1 [Data Valid](#31-data-vaild)  
   3.2 [Kibana Visualize](#32-kibana-visualize)  
 
-5. [**Connection Process**](#4-connection-process)  
+4. [**Connection Process**](#4-connection-process)  
+
+5. [**TroubleShooting**](#5-troubleshooting)
 
 6. [**Review**](#5-review)
 
@@ -294,7 +296,53 @@ output {
 <br>
 
 
-# 5. Review
+# 5. TroubleShooting💥
+1. **Logstash add_field 문제 해결 트러블슈팅**
+<br>
+
+```
+     add_field => { # seq,stdDay,gubun,gubunCn,gubunEn,deathCnt,incDec,isolClearCnt,qurRate,defCnt,isolIngCnt,overFlowCnt,localOccCnt,createDt,updateDt
+      "seq" => "%{[message][0]}"
+      "stdDay" => "%{[message][1]}"
+      "gubun" => "%{[message][2]}"
+      "gubunCn" => "%{[message][3]}"
+      "gubunEn" => "%{[message][4]}"
+      "deathCnt" => "%{[message][5]}"
+      "incDec" => "%{[message][6]}"
+      "isolClearCnt" => "%{[message][7]}"
+      "qurRate" => "%{[message][8]}"
+      "defCnt" => "%{[message][9]}"
+      "isolIngCnt" => "%{[message][10]}"
+      "overFlowCnt" => "%{[message][11]}"
+      "localOccCnt" => "%{[message][12]}"
+      "createDt" => "%{[message][13]}"
+      "updateDt" => "%{[message][14]}"
+    }
+```
+**문제 상황**
+
+- Logstash에서 add_field를 사용해 message 필드 데이터를 추출하려 했으나, Elasticsearch(ES)에 실제 값이 아닌 "%{[message][14]}" 같은 문자열이 저장됨.
+
+**원인 분석**
+
+1. 필드 참조 방식 오류
+
+   - "%{[message][0]}" 같은 표현은 동적 변수 참조 방식이지만, message가 제대로 파싱되지 않으면 문자열 그대로 저장됨.
+2. message 필드 구조화 문제
+
+    - message가 단순 문자열이면 [message][0], [message][1]처럼 배열 인덱스로 접근할 수 없음.
+mutate 또는 csv 플러그인으로 먼저 분리해야 함.
+
+3. 데이터 파싱 실패
+
+    - message가 분리되지 않아 add_field가 값을 제대로 참조하지 못함.
+
+**해결 방법**
+- add_field를 제거하여 잘못된 데이터 저장 방지.
+- csv 또는 split 필터로 message를 개별 필드로 변환한 후 올바른 필드 매핑 적용.
+
+<br>
+# 6. Review
 
 
 ### 💡 김창규
