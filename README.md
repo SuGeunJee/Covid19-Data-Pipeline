@@ -343,6 +343,7 @@ mutate 또는 csv 플러그인으로 먼저 분리해야 함.
 - csv 또는 split 필터로 message를 개별 필드로 변환한 후 올바른 필드 매핑 적용.
 
 <br>
+
 # 6. Review
 
 
