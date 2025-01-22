@@ -71,9 +71,9 @@
     <title>기술 스택</title>
     <style>
         table {
-            width: 50%;
+            width: 60%; /* 테이블 너비 최적화 */
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 20px auto; /* 테이블 가운데 정렬 */
         }
         th, td {
             border: 1px solid #ddd;
@@ -82,6 +82,7 @@
         }
         th {
             background-color: #000000; /* 기본 배경색 추가 */
+            color: white; /* 글씨 색상을 흰색으로 설정 */
         }
     </style>
 </head>
@@ -114,6 +115,7 @@
     </table>
 </body>
 </html>
+
 
 
 # 2. Data Overview📰
