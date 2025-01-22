@@ -9,18 +9,19 @@
   1.3 [Stack](#12-stack)  
 
 2. [**Data Overview**](#2-data-overview)  
-  2.1 [Table - Covid19SidoInfState](#21-table-covid19sidoinfstate)  
-  2.2 [Data Set](#22-data-set)  
-  2.3 [Data Flow](#23-data-flow)  
-  2.4 [Data Source](#24-data-source)  
+  2.1 [Table - Covid19SidoInfState](#21-database-structure)  
+  2.2 [Data Set](#22-table-covid19sidoinfstate)  
+  2.3 [Data Flow](#23-data-set)  
+  2.4 [Data Source](#24-data-flow)
+  2.5 [Data Source](#25-data-source)
 
-3. [**Data Visualization Using Kibana**](#3-data-visualization-using-kibana️)  
+4. [**Data Visualization Using Kibana**](#3-data-visualization-using-kibana️)  
   3.1 [Data Valid](#31-data-vaild)  
   3.2 [Kibana Visualize](#32-kibana-visualize)  
 
-4. [**Connection Process**](#4-connection-process)  
+5. [**Connection Process**](#4-connection-process)  
 
-5. [**Review**](#5-review)
+6. [**Review**](#5-review)
 
 # 1. Project
 <br>
