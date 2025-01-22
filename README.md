@@ -61,20 +61,57 @@
 
 
 ## 1.2. Stack
-### ✔️ Analytics Engine
-<img src="https://img.shields.io/badge/Elasticsearch-52B54B?style=for-the-badge&logo=Elasticsearch&logoColor=white">
-
-### ✔️ DataBase
-<img src="https://img.shields.io/badge/Mysql-4479A1?style=for-the-badge&logo=Mysql&logoColor=white">
-
-### ✔️ OS
-<img src="https://img.shields.io/badge/ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white">
-
-### ✔️ IDE
-<img src="https://img.shields.io/badge/dbeaver-382923?style=for-the-badge&logo=dbeaver&logoColor=white">
-
-### ✔️ Data Ingestion Tool
-<img src="https://img.shields.io/badge/logstash-005571?style=for-the-badge&logo=logstash&logoColor=white">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기술 스택</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: "";
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Technology</th>
+        </tr>
+        <tr>
+            <td>Analytics Engine</td>
+            <td><img src="https://img.shields.io/badge/Elasticsearch-52B54B?style=for-the-badge&logo=Elasticsearch&logoColor=white"></td>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td><img src="https://img.shields.io/badge/Mysql-4479A1?style=for-the-badge&logo=Mysql&logoColor=white"></td>
+        </tr>
+        <tr>
+            <td>OS</td>
+            <td><img src="https://img.shields.io/badge/ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white"></td>
+        </tr>
+        <tr>
+            <td>IDE</td>
+            <td><img src="https://img.shields.io/badge/dbeaver-382923?style=for-the-badge&logo=dbeaver&logoColor=white"></td>
+        </tr>
+        <tr>
+            <td>Data Ingestion Tool</td>
+            <td><img src="https://img.shields.io/badge/logstash-005571?style=for-the-badge&logo=logstash&logoColor=white"></td>
+        </tr>
+    </table>
+</body>
+</html>
 
 <br>
 <br>
@@ -295,7 +332,9 @@ output {
 **ElasticSearch & logstash를 통한 data 값 확인**
 <br>
 
+
 # 5. TroubleShooting💥
+<br>
 
 ### 이슈 1. Logstash add_field 문제 해결 트러블슈팅
 
@@ -342,7 +381,7 @@ mutate 또는 csv 플러그인으로 먼저 분리해야 함.
 
 <br>
 
-
+***
 ### 이슈 2. ES시간 UTC기준으로 시간 비교 불가 트러블슈팅
 
 
@@ -351,16 +390,20 @@ mutate 또는 csv 플러그인으로 먼저 분리해야 함.
 
 
 **문제 상황**
+
 - 마지막으로 ElasticSearch에 입력된 시간과 db에 신규로 입력된 시간을 비교하여 신규데이터들만 들어갈 수 있도록 스케줄링하려고 하였으나 비교가 불가.
 
 
 **원인 분석**
+
 - ElasticSearch 서버 시간은 UTC기준으로 신규 입력된 데이터는 한국시간이라 상이함.
 
 
 **해결 방법**
+
 - statement 내 select 시 서버시간 + 9시간하여 한국시간과 맞춰 시간 비교가 가능하도록 변경했습니다.
 <br><br>
+***
 
 ### 이슈 3. Kibana 시각화 트러블슈팅
 
@@ -382,6 +425,8 @@ mutate 또는 csv 플러그인으로 먼저 분리해야 함.
 
 
 # 6. Review
+
+
 ### 💡 김창규
 
 
