@@ -83,7 +83,10 @@
 ## 2.1. Table [Covid19SidoInfState]
 <br>
 
-![Covid - Data Visualization](https://github.com/user-attachments/assets/739d277e-cee2-41e3-87dc-1e6cacb24d48)
+
+![테이블](https://github.com/user-attachments/assets/8e60333f-a85b-46bd-b080-43b77eba7215)
+
+
 <br>
 <br>
 
