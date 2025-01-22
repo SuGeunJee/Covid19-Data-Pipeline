@@ -61,6 +61,7 @@
 
 
 ## 1.2. Stack
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -79,7 +80,7 @@
             text-align: center;
         }
         th {
-            background-color: "";
+            background-color: #; /* 기본 배경색 추가 */
         }
     </style>
 </head>
@@ -91,30 +92,28 @@
         </tr>
         <tr>
             <td>Analytics Engine</td>
-            <td><img src="https://img.shields.io/badge/Elasticsearch-52B54B?style=for-the-badge&logo=Elasticsearch&logoColor=white"></td>
+            <td><img src="https://img.shields.io/badge/Elasticsearch-52B54B?style=for-the-badge&logo=Elasticsearch&logoColor=white" alt="Elasticsearch"></td>
         </tr>
         <tr>
             <td>Database</td>
-            <td><img src="https://img.shields.io/badge/Mysql-4479A1?style=for-the-badge&logo=Mysql&logoColor=white"></td>
+            <td><img src="https://img.shields.io/badge/Mysql-4479A1?style=for-the-badge&logo=Mysql&logoColor=white" alt="Mysql"></td>
         </tr>
         <tr>
             <td>OS</td>
-            <td><img src="https://img.shields.io/badge/ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white"></td>
+            <td><img src="https://img.shields.io/badge/ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Ubuntu"></td>
         </tr>
         <tr>
             <td>IDE</td>
-            <td><img src="https://img.shields.io/badge/dbeaver-382923?style=for-the-badge&logo=dbeaver&logoColor=white"></td>
+            <td><img src="https://img.shields.io/badge/dbeaver-382923?style=for-the-badge&logo=dbeaver&logoColor=white" alt="DBeaver"></td>
         </tr>
         <tr>
             <td>Data Ingestion Tool</td>
-            <td><img src="https://img.shields.io/badge/logstash-005571?style=for-the-badge&logo=logstash&logoColor=white"></td>
+            <td><img src="https://img.shields.io/badge/logstash-005571?style=for-the-badge&logo=logstash&logoColor=white" alt="Logstash"></td>
         </tr>
     </table>
 </body>
 </html>
 
-<br>
-<br>
 
 # 2. Data Overview📰
 
