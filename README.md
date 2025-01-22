@@ -62,6 +62,7 @@
 
 ## 1.2. Stack
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -80,7 +81,7 @@
             text-align: center;
         }
         th {
-            background-color: #; /* 기본 배경색 추가 */
+            background-color: #000000; /* 기본 배경색 추가 */
         }
     </style>
 </head>
