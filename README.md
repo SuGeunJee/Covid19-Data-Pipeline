@@ -192,16 +192,17 @@ input {
     jdbc_validate_connection => true
     jdbc_driver_class => "com.mysql.cj.jdbc.Driver"
     jdbc_driver_library => "C:\02.devEnv\ELK\logstash-7.11.1\logstash-core\lib\jars\mysql-connector-j-8.2.0.jar"
-    #jdbc_connection_string => "jdbc:mysql://127.0.0.1:3306/fisa"
     jdbc_connection_string => "jdbc:mysql://192.168.0.114/COVID"
     jdbc_user => "covid"
     jdbc_password => "covid"
     
-    # false 타임스탬프 사용, true 숫자 사용
+    # false 타임스탬프 사용 / true 숫자 사용
     use_column_value => false
 
+    # 마지막 처리 상태 저장
     record_last_run => true
 
+    # 새로 추가되는 데이터를 구분하기 위해 트래킹할 컬럼 지정
     tracking_column => timestamp
 
     tracking_column_type => "timestamp"
@@ -213,8 +214,8 @@ input {
 
     #sql_last_value는 마지막 레코드 중 설정된 필드값
     statement => "SELECT seq,stdDay,gubun,gubunCn,gubunEn,deathCnt,incDec,isolClearCnt,qurRate,defCnt,isolIngCnt,overFlowCnt,localOccCnt,createDt,updateDt 
-    FROM Covid19SidoInfState 
-    WHERE timestamp > DATE_ADD(:sql_last_value, INTERVAL 9 HOUR)"
+                  FROM Covid19SidoInfState 
+                  WHERE timestamp > DATE_ADD(:sql_last_value, INTERVAL 9 HOUR)"
     schedule => "*/1 * * * *"
   }
 }
@@ -230,20 +231,18 @@ filter {
       "gubunEn", "", "기본값"
     ]
   }
-  # 날짜 필드를 Elasticsearch에서 인식할 수 있도록 변환
   
   # 데이터 파싱 지원
-  # grok {
-  #   match => { "stdDay" => "(?<year>\d{4})년 (?<month>\d{2})월" }
-  # }
-  # mutate {
-  #   add_field => { 
-  #     "stdYearMonth" => "%{year}-%{month}"
-  #     "stdYear" => "%{year}년"
-  #   }
-  #   remove_field => ["year", "month"]  # 임시 필드 제거
-  # }
-
+  grok {
+    match => { "stdDay" => "(?<year>\d{4})년 (?<month>\d{2})월" }
+  }
+  mutate {
+    add_field => { 
+      "stdYearMonth" => "%{year}-%{month}"
+      "stdYear" => "%{year}년"
+    }
+    remove_field => ["year", "month"]  # 임시 필드 제거
+  }
 
   date {
     match => ["createDt", "yyyy년 MM월 dd일 HH시"]
@@ -251,12 +250,14 @@ filter {
     locale => "ko"
     target => "createDt"
   }
+
   date {
     match => ["updateDt", "yyyy년 MM월 dd일 HH시"]
     timezone => "Asia/Seoul"
     locale => "ko"
     target => "updateDt"
   }
+
   # 숫자 타입으로 변환
   mutate {
     convert => {
@@ -271,6 +272,7 @@ filter {
     }
   }
 }
+
 output {
   stdout {
     codec => rubydebug  # 콘솔에 출력하여 결과 확인
@@ -278,8 +280,6 @@ output {
   elasticsearch {
     hosts => ["http://localhost:9200"]
     index => "covid28"
-    # document_id => "%{id}"
-    # doc_as_upsert => true
   }
 }
 ```
