@@ -80,7 +80,15 @@
 
 <br>
 
-## 2.1. Table [Covid19SidoInfState]
+## 2.1. Database Structure
+
+### DataBase Connection Information
+- **Host**: 192.168.0.114
+- **Port**: 3306
+- **Username**: covid
+- **Database**: COVID
+
+## 2.2. Table [Covid19SidoInfState]
 <br>
 
 
@@ -90,7 +98,7 @@
 <br>
 <br>
 
-## 2.2 Data Set
+## 2.3 Data Set
 | 번호 | 변수명       | 설명                                                                 | 예시                  |
 |------|--------------|----------------------------------------------------------------------|-----------------------|
 | 1    | seq          | 각 데이터 항목의 고유 식별자.                                         | 23893                 |
@@ -98,7 +106,7 @@
 | 3    | gubun        | 데이터가 속한 지역 또는 범주를 구분하는 명칭.                       | 합계 (전체 지역을 포함한 총합) |
 | 4    | gubunCn      | `gubun`의 중국어 표기.                                               | 首尔                   |
 | 5    | gubunEn      | `gubun`의 영어 표기.                                                 | Seoul               |
-| 6    | deathCnt     | COVID-19로 인한 사망자 수.                                           | 34401                 |
+| 6    | deathCnt     | COVID-19로 인한 누적 사망자 수.                                     | 34401                 |
 | 7    | incDec       | 하루 동안 발생한 신규 확진자 수의 증감.                             | 14094                 |
 | 8    | isolClearCnt | 격리에서 해제된 사람 수.                                            | 0                     |
 | 9    | qurRate      | 검사 대비 확진자 비율. 특정 기간 동안 시행된 검사 수 대비 확진자 수의 비율을 나타냄. | 60343                 |
@@ -111,14 +119,14 @@
 
 <br>
 
-## 2.3 Data Flow
+## 2.4 Data Flow
 <br>
 
 - MySQL에서 Logstash를 거쳐 Elasticsearch로 데이터가 흐르는 과정
 
 ![MySQL ↔ Logstash_ JDBC Driver 활용 및 Elasticsearch 프로세스 과정 - visual selection](https://github.com/user-attachments/assets/5e35298d-3fb9-429c-94bf-f310148a4514)
 
-## 2.4 Data Source
+## 2.5 Data Source
 
 ## Data Source
 
