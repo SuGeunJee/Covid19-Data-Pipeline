@@ -181,65 +181,69 @@ input {
     jdbc_validate_connection => true
     jdbc_driver_class => "com.mysql.cj.jdbc.Driver"
     jdbc_driver_library => "C:\02.devEnv\ELK\logstash-7.11.1\logstash-core\lib\jars\mysql-connector-j-8.2.0.jar"
-    jdbc_connection_string => "jdbc:mysql://127.0.0.1:3306/fisa"
-    jdbc_user => "user01"
-    jdbc_password => "user01"
-    use_column_value => true
+    #jdbc_connection_string => "jdbc:mysql://127.0.0.1:3306/fisa"
+    jdbc_connection_string => "jdbc:mysql://192.168.0.114/COVID"
+    jdbc_user => "covid"
+    jdbc_password => "covid"
+    
+    # false 타임스탬프 사용, true 숫자 사용
+    use_column_value => false
+
     record_last_run => true
-    tracking_column => seq
+
+    tracking_column => timestamp
+
+    tracking_column_type => "timestamp"
+
+    # 마지막 컬럼값 기록 여부
     clean_run => false
+
     last_run_metadata_path => "C:\02.devEnv\ELK\logstash-7.11.1\inspector-index.dat"
-    statement => "SELECT seq,stdDay,gubun,gubunCn,gubunEn,deathCnt,incDec,isolClearCnt,qurRate,defCnt,isolIngCnt,overFlowCnt,localOccCnt,createDt,updateDt FROM Covid19 WHERE seq > :sql_last_value ORDER BY seq ASC"
+
+    #sql_last_value는 마지막 레코드 중 설정된 필드값
+    statement => "SELECT seq,stdDay,gubun,gubunCn,gubunEn,deathCnt,incDec,isolClearCnt,qurRate,defCnt,isolIngCnt,overFlowCnt,localOccCnt,createDt,updateDt 
+    FROM Covid19SidoInfState 
+    WHERE timestamp > DATE_ADD(:sql_last_value, INTERVAL 9 HOUR)"
     schedule => "*/1 * * * *"
   }
 }
 filter {
   # 데이터를 직접 추가하여 필드 값을 설정
   mutate {
-    add_field => {
-      # "seq" => "%{[seq]}"
-      # "gubun" => "%{[gubun]}"
-      # "deathCnt" => "%{[deathCnt]}"
-      # "incDec" => "%{[incDec]}"
-      # "isolClearCnt" => "%{[isolClearCnt]}"
-      # "defCnt" => "%{[defCnt]}"
-      # "isolIngCnt" => "%{[isolIngCnt]}"
-      # "overFlowCnt" => "%{[overFlowCnt]}"
-      # "localOccCnt" => "%{[localOccCnt]}"
-      # "newStdDay" => "%{[stdDay]}"
-    }
     remove_field => ["ecs", "host", "@version", "agent", "log", "tags", "input", "message"]
   }
   # null 값 처리 및 기본값 설정
   mutate {
     gsub => [
-      "stdDay", "", "기본값",  # 기본값을 "기본값"으로 설정
-      "gubunEn", "", "기본값"  # 기본값을 "기본값"으로 설정
+      "stdDay", "", "기본값", # null값을 "기본값"으로 설정
+      "gubunEn", "", "기본값"
     ]
   }
   # 날짜 필드를 Elasticsearch에서 인식할 수 있도록 변환
   
-  
-  grok {
-    match => { "stdday" => "(?<year>\d{4})년 (?<month>\d{2})월" }
-  }
-  mutate {
-    add_field => { 
-      "stdYearMonth" => "%{year}-%{month}"
-      "stdYear" => "%{year}년"
-    }
-    remove_field => ["year", "month"]  # 임시 필드 제거
-  }
+  # 데이터 파싱 지원
+  # grok {
+  #   match => { "stdDay" => "(?<year>\d{4})년 (?<month>\d{2})월" }
+  # }
+  # mutate {
+  #   add_field => { 
+  #     "stdYearMonth" => "%{year}-%{month}"
+  #     "stdYear" => "%{year}년"
+  #   }
+  #   remove_field => ["year", "month"]  # 임시 필드 제거
+  # }
 
 
   date {
     match => ["createDt", "yyyy년 MM월 dd일 HH시"]
     timezone => "Asia/Seoul"
+    locale => "ko"
     target => "createDt"
   }
   date {
     match => ["updateDt", "yyyy년 MM월 dd일 HH시"]
     timezone => "Asia/Seoul"
+    locale => "ko"
     target => "updateDt"
   }
   # 숫자 타입으로 변환
@@ -262,7 +266,9 @@ output {
   }
   elasticsearch {
     hosts => ["http://localhost:9200"]
-    index => "covid19"
+    index => "covid28"
+    # document_id => "%{id}"
+    # doc_as_upsert => true
   }
 }
 ```
