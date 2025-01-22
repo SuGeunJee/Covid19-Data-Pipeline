@@ -345,6 +345,11 @@ mutate 또는 csv 플러그인으로 먼저 분리해야 함.
 
 ### 이슈 2. ES시간 UTC기준으로 시간 비교 불가 트러블슈팅
 
+
+![캡처2](https://github.com/user-attachments/assets/fa8c29a0-9aa7-4976-aa6b-92f2b1f447c1)
+
+
+
 **문제 상황**
 - 마지막으로 ElasticSearch에 입력된 시간과 db에 신규로 입력된 시간을 비교하여 신규데이터들만 들어갈 수 있도록 스케줄링하려고 하였으나 비교가 불가.
 
